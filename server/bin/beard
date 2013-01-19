@@ -1,0 +1,91 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+import os
+import json
+
+# Tornado imports
+import tornado.httpserver
+import tornado.ioloop
+import tornado.options
+import tornado.web
+
+from tornado.options import define, options
+
+# Sqlalchemy imports
+from sqlalchemy import create_engine
+from sqlalchemy.orm import scoped_session, sessionmaker
+
+from beard import models
+from beard.models.users import User
+from beard.models.charts import HighChart, Dashboard
+from beard.handlers import IndexHandler
+from beard.handlers.user import SessionHandler, UserHandler
+from beard.handlers.chart import DashboardHandler, ChartHandler
+from beard.handlers.websocket import StatusHandler
+
+# Options
+define("port", default=8000, help="run on the given port", type=int)
+define("debug", default=False, type=bool)
+define("db_path", default='sqlite:////tmp/test.db', type=str)
+
+
+class Application(tornado.web.Application):
+    def __init__(self):
+        handlers = [
+            (r'/', IndexHandler),
+            (r'/users', UserHandler),
+            (r'/charts', ChartHandler),
+            (r'/charts/([-a-zA-Z0-9]+)', ChartHandler),  # take the chart id
+            (r'/sessions', SessionHandler),
+            (r'/chartdata', StatusHandler),
+            (r'/dashboards', DashboardHandler),
+            (r'/dashboards/([-a-zA-Z0-9]+)', DashboardHandler),
+        ]
+        settings = dict(
+            debug=options.debug,
+            static_path=os.path.join(os.path.dirname(__file__),
+                                     "../beard/static"),
+            template_path=os.path.join(os.path.dirname(__file__),
+                                       "../beard/templates"),
+            # TODO: Not having XSRF cookies is insecure. Fix that sometime.
+            xsrf_cookies=False,
+            # TODO Change this to a random string
+            cookie_secret="mah_dirty_little_secret",
+            login_url="/sessions"
+        )
+        tornado.web.Application.__init__(self, handlers, **settings)
+        engine = create_engine(options.db_path, convert_unicode=True, echo=options.debug)
+        models.init_db(engine)
+        self.db = scoped_session(sessionmaker(bind=engine))
+        if self.db.query(HighChart).first():
+            pass
+        else:
+            u = User('ryansb')
+            u.setPass('secret')
+            self.db.add(u)
+            d = Dashboard()
+            d.owner_id = u.id
+            d.name = "default dashboard"
+            self.db.add(d)
+            chart = HighChart()
+            chart.json = json.dumps(dict(
+                title="Test Chart",
+                subtitle="A Longer Subtitle for Test Chart",
+                series=[1, 2, 3, 4, 5],
+                chartType='nipplegraph'
+            ))
+            chart.owner_id = u.id
+            chart.dashboard_id = d.id
+            chart.id = '9e9cd0ab-ff2e-4503-b6c2-0b7f9108ba59'
+            self.db.add(chart)
+            self.db.commit()
+
+
+def main():
+    tornado.options.parse_command_line()
+    http_server = tornado.httpserver.HTTPServer(Application())
+    http_server.listen(options.port)
+    tornado.ioloop.IOLoop.instance().start()
+
+if __name__ == '__main__':
+    main()

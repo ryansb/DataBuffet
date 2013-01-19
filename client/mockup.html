@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>DataBuffet.io</title>
+
+		<script type="text/javascript" src="assets/js/jquery.min.js"></script>
+		<script type="text/javascript" src="assets/js/bootstrap.min.js"></script>
+		<script type="text/javascript" src="assets/js/handlebars.js"></script>
+		<script type="text/javascript" src="assets/js/ember.min.js"></script>
+		<script type="text/javascript" src="assets/js/amplify.min.js"></script>
+		<script type="text/javascript" src="assets/js/highcharts/highcharts.js"></script>
+		<script type="text/javascript" src="assets/js/app.templates.js"></script>
+		<script type="text/javascript" src="assets/js/app.js"></script>
+
+		<link href="assets/css/bootstrap.min.css" rel="stylesheet" media="screen">
+		<link href="assets/css/databuffet.css" rel="stylesheet" media="screen">
+
+		<script type="text/javascript">
+			// $(document).ready(function() {
+			// 	DataBuffet.initialize();
+			// });
+		</script>
+	</head>
+	<body>
+
+    <div class="navbar navbar-fixed-top">
+      <div class="navbar-inner">
+        <div class="container">
+          <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+            <span class="icon-bar"></span> 
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </a>
+          <a class="brand" href="#">DataBuffet.io</a>
+          <div class="nav-collapse">
+            <ul class="nav">
+              <li class="active"><a href="#">Home</a></li>
+              <li><a href="#/dashboards">Dashboards</a></li>
+              <li><a href="#/charts">Charts</a></li>
+            </ul>
+            <ul class="nav pull-right">
+              <li><a href="#" {{action loginUser}}>Sign In</a></li>
+            </ul>
+          </div><!--/.nav-collapse -->
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+<!-- 
+	    <div id="myCarousel" class="carousel slide">
+  
+        <div class="carousel-inner">
+            <div class="active item"><img src="" /></div>
+            <div class="item"><img src="" /></div>
+            <div class="item"><img src="" /></div>
+        </div>
+
+        <a class="carousel-control left" href="#myCarousel" data-slide="prev">&lsaquo;</a>
+        <a class="carousel-control right" href="#myCarousel" data-slide="next">&rsaquo;</a>
+        </div> -->
+
+		<div class="hero-unit">
+			<h1>DataBuffet.io</h1>
+			<p>
+				All the data you can eat, all on one plate.
+			</p>
+			<p>
+			</p>
+		</div>
+
+        <div class="row" id="call-to-action">
+          
+          <div class="span9">
+              <h2>View All Of Our Products Now!</h2>
+          </div><!-- end text -->
+
+          <a class="btn btn-large btn-success offset1" {{action goToSignup}}>Sign up!</a>
+
+        </div><!-- end cta -->
+
+      <!-- Example row of columns -->
+      <div class="row">
+        <div class="span4">
+          <h2>Kittens</h2>
+           <p></p>
+          <p><a class="btn" href="#">View details &raquo;</a></p>
+        </div>
+        <div class="span4">
+          <h2>Kittens</h2>
+           <p></p>
+          <p><a class="btn" href="#">View details &raquo;</a></p>
+       </div>
+        <div class="span4">
+          <h2>Kittens</h2>
+          <p></p>
+          <p><a class="btn" href="#">View details &raquo;</a></p>
+        </div>
+      </div>
+
+      <hr>
+
+      <footer>
+        <p></p>
+      </footer>
+
+    </div> <!-- /container -->
+	</body>
+</html>

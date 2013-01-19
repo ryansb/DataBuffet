@@ -1,0 +1,10 @@
+<div class="dashboard">
+	<div class="row">
+		<h2 class="pull-left">{{content.name}}</h2><a class="btn btn-large btn-success pull-right" {{action editDashboard}}><i class="icon-wrench"></i></a>
+		<div class="clear"></div>
+	<div/
+	{{#each chart in content.charts}}
+		<div class="chart-display" {{bindAttr id="chart.id"}}></div>
+	{{/each}}
+	<div class="clear"></clear>
+</div>

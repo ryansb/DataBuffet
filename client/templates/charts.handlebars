@@ -1,0 +1,6 @@
+<h1>Your Charts</h1>
+<div class="row">
+	{{#each chart in controller.content}}
+		{{view "DataBuffet.ChartView" context=chart}}
+	{{/each}}
+</div>

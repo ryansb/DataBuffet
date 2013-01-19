@@ -1,0 +1,29 @@
+.chart-example {
+	width: 20%;
+	float: left;
+	margin: 4px;
+}
+.clear {
+	clear: both;
+}
+.new-dashboard {
+	height: 70%;
+}
+
+.chart {
+	width: 200px;
+}
+
+.big-button {
+	height: 64px;
+}
+
+body {
+	padding-top: 40px;
+}
+
+.chart-display {
+	height: 50%;
+	width: 33%;
+	float: left;
+}

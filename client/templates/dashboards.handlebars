@@ -1,0 +1,17 @@
+<h1>Your Dashboards</h1>
+<div class="row">
+	<button class="btn span12 big-button" type="button" {{action createDashboard}}>Create New Dashboard</button>
+</div>
+<div class="row">
+	<div class="span3 dashboard-sidebar">
+		<ul>
+		{{#each dash in content}}
+			<li>
+				<div class="dashboard-thumbnail">
+					<h2><a href="#" {{action viewDashboard dash}}>{{dash.name}}</a></h2>
+				</div>
+			</li>
+		{{/each}}
+		</ul>
+	</div>
+</div>

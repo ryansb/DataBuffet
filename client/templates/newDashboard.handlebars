@@ -1,0 +1,23 @@
+{{outlet mycharts}}
+<div class="row">
+	<div class="offset span12 well new-dashboard">
+		<h1><input id="dashboard-name" type="text" name="name" placeholder="New Dashboard"></h1>
+		<div class="selected-charts">
+			{{#each chart in charts}}
+				<div class="thumbnail chart-example">
+				<div class="chart-thumbnail">
+				<img src="http://lorempixel.com/200/200/">
+				</div>
+				<div class="caption">
+				<h3>{{chart.highchart.title.text}}</h3>
+				<p>{{chart.highchart.subtitle.text}}</p>
+				<p><a href="#" class="btn btn-primary" type="button" {{action removeChart chart}}>Remove Chart</a></p>
+				</div>
+				</div>	
+			{{/each}}
+		</div>
+	</div>
+</div>
+<div class="row">
+	<button class="btn span12 big-button" type="button" {{action saveDashboard}}>Save Dashboard</button>
+</div>

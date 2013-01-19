@@ -1,0 +1,21 @@
+<div class="row">
+	<h1>Create a Chart</h1>
+	<div class="offset1 span5">
+		<form name="newChartForm" id="newChartForm" {{action saveChart on="submit"}}>
+			<fieldset>
+				<legend>
+					Select Chart Type
+				</legend>
+				<select class="chart-type-select">
+					<option value="line" selected="selected">Line Chart</option>
+					<option value="pie">Pie Chart</option>
+					<option value="bar">Bar Chart</option>
+				</select>
+				{{outlet chartcreate}}
+				<button class="btn" type="submit">Save</button>
+			</fieldset>
+		</form>
+	</div>
+	<div id="example-chart" class="span6">
+	</div>
+</div>

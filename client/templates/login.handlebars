@@ -1,0 +1,17 @@
+<div class="row">
+	<div class="offset4 span4">
+		<form {{action loginUser on="submit" target="controller"}}>
+			<fieldset>
+				<legend>
+					Sign in to DataBuffet.io
+				</legend>
+				<input type="email" id="email-entry" required="required" placeholder="Email address">
+				<input type="password" id="password-entry" required="required" placeholder="Password">
+				<a href="#" {{action forgotPassword}}>
+					<span class="help-block">Forgot my password...</span>
+				</a>
+				<button class="btn" type="submit">Sign in</button>
+			</fieldset>
+		</form>
+	</div>
+</div>

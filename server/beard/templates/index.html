@@ -1,0 +1,22 @@
+<html>
+  <head>
+    <title>Test page</title>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js" type="application/javascript"></script>
+    <script src="{{ static_url('connector.js') }}" type="application/javascript"></script>
+    <script src="{{ static_url('lib/hc/js/highcharts.js') }}" type="application/javascript"></script>
+  </head>
+  <body>
+    <div>
+      <h1>Test page</h1>
+    </div>
+    <input type="hidden" id="chart_id" value="{{ chart_id }}" />
+    <div id="container" style="min-width: 400px; height: 400px; margin: 0 auto"></div>
+    <div id="add-to-coord">
+      <p>Coordinates: <span id="count">{{ count }}</span></p>
+      <p><input type="submit" value="Add X" id="increment-x" />
+      <input type="submit" value="Add Y" id="increment-y" /></p>
+      <p><input type="submit" value="Subtract X" id="decrement-x" />
+      <input type="submit" value="Subtract Y" id="decrement-y" /></p>
+    </div>
+  </body>
+</html>

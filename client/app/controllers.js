@@ -1,0 +1,1 @@
+DataBuffet.ApplicationController = Ember.Controller.extend();DataBuffet.LoginController = Ember.Controller.extend();
